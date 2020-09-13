@@ -15,22 +15,56 @@ int main() {
     int m = 0;
     int x = 0;
     int count = 0;
+    int change = 0;
 
     /*
      * 数を取得
      */
 
-    printf("Input n: ");
+    while (1) {
 
-    scanf("%d", &n);
+        printf("Input n: "); scanf("%d", &n);
 
-    printf("Input m: ");
+        if (!(n <= 100 && n >= -100)) {
 
-    scanf("%d", &m);
+            printf("数値は-100以上、100以下である必要があります。\n");
 
-    printf("n = %d\n", n);
+            continue;
 
-    printf("m = %d\n", m);
+        }
+
+        printf("Input m: "); scanf("%d", &m);
+
+        if (!(m <= 100 && m >= -100)) {
+
+            printf("数値は-100以上、100以下である必要があります。\n");
+
+            continue;
+
+        }
+
+        /*
+         * もし１つ目の整数が２つ目の整数より大きい時、入れ替える。
+         */
+
+        if (m < n) {
+
+            int n1 = n;
+
+            n = m;
+
+            m = n1;
+
+            change = 1;
+
+        }
+
+        break;
+
+    }
+
+    printf("n = %d\nm = %d\n", n, m);
+
 
     /*
      * 計算
@@ -38,11 +72,7 @@ int main() {
 
     while (1) {
 
-        if ((n + count) > m) {
-
-            break;
-
-        }
+        if (n + count > m) break;
 
         x += n + count;
 
@@ -54,7 +84,14 @@ int main() {
      * 結果表示
      */
 
-    printf("sum = %d", x);
+    printf("sum = %d\n", x);
+
+    if (change) {
+
+        printf("(自動的に入れ替わりました。)");
+
+    }
 
     return 0;
+
 }
